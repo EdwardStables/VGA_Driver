@@ -86,10 +86,41 @@ always @(posedge clk) begin
     end
 end
 
+logic [3:0] letter;
+
+always_comb begin
+    letter = 4'b0;
+    //O
+    if (hcount >= 228 && hcount < 303 && vcount > 256 && vcount < 768)
+        letter = 4'hFF;
+    if (hcount >= 303 && hcount < 378 && vcount > 256 && vcount < 384)
+        letter = 4'hFF;
+    if (hcount >= 303 && hcount < 378 && vcount > 640 && vcount < 768)
+        letter = 4'hFF;
+    if (hcount >= 378 && hcount < 453 && vcount > 256 && vcount < 768)
+        letter = 4'hFF;
+
+    //L
+    if (hcount >= 528 && hcount < 603 && vcount > 256 && vcount < 768)
+        letter = 4'hFF;
+    if (hcount >= 603 && hcount < 753 && vcount > 640 && vcount < 768)
+        letter = 4'hFF;
+
+    //C
+    if (hcount >= 828 && hcount < 903 && vcount > 256 && vcount < 768)
+        letter = 4'hFF;
+    if (hcount >= 903 && hcount < 1053 && vcount > 256 && vcount < 384)
+        letter = 4'hFF;
+    if (hcount >= 903 && hcount < 1053 && vcount > 640 && vcount < 768)
+        letter = 4'hFF;
+
+end
+
+
 //Blank during sync
 assign R = vstate != PIXEL || hstate != PIXEL ? 'b0 : 4'b1111;
-assign G = vstate != PIXEL || hstate != PIXEL ? 'b0 : 4'b0000;
-assign B = vstate != PIXEL || hstate != PIXEL ? 'b0 : 4'b0000;
+assign G = vstate != PIXEL || hstate != PIXEL ? 'b0 : letter;
+assign B = vstate != PIXEL || hstate != PIXEL ? 'b0 : letter;
 
 //Active low signals
 assign HS = hstate != SYNC;
