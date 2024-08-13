@@ -1,18 +1,19 @@
-module top (input logic clk, input logic [3:0] btn, output logic [3:0] led);
+module top (
+    input logic clk,
+    output logic [3:0] R,
+    output logic [3:0] G,
+    output logic [3:0] B,
+    output logic HS,
+    output logic VS
+);
 
-    logic [3:0] led_r;
-
-    initial begin
-        led_r = 'b0;
-    end
-
-
-    always_ff @(posedge clk) begin
-        for (int i = 0; i < 4; i++) begin
-            if (btn[i]) led_r[i] <= ~led_r[i];
-        end
-    end
-
-    assign led = led_r;
+vga_driver i_vga_driver(
+    .clk(clk),
+    .R(R),
+    .G(G),
+    .B(B),
+    .HS(HS),
+    .VS(VS)
+);
 
 endmodule
