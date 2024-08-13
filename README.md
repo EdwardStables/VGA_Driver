@@ -4,7 +4,7 @@ VGA driver logic for use with Arty A7 FPGA and PmodVGA breakout. This implementa
 
 ## Functionality
 
-Current commit is an upload of an older implementation, it drives a 1280x1024 VGA display with a block colour, mostly a test to make sure everything works as expected.
+Current commit is an upload of an older implementation, it drives a 1280x1024 VGA display with a block colour and very basic text shapes, mostly a test to make sure everything works as expected.
 
 ## References
 
